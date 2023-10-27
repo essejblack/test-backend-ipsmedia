@@ -2,9 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Achievement;
+use App\Models\Comment;
 use App\Models\Lesson;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
+
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +19,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $lessons = Lesson::factory()
-            ->count(20)
-            ->create();
+            ->count(20)->create();
+
+        $users = User::factory()
+            ->count(3)->create()->modelKeys();
+
+        $achievements = Achievement::factory()
+            ->count(5)->create();
+
+        $comments = Comment::factory()->count(2)->create([
+            'user_id' => Arr::random($users)
+        ]);
     }
 }
