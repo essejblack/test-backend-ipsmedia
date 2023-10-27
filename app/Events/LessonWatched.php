@@ -2,26 +2,21 @@
 
 namespace App\Events;
 
-use App\Models\User;
 use App\Models\Lesson;
-use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 class LessonWatched
 {
     use Dispatchable, SerializesModels;
-
-    public $lesson;
-    public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Lesson $lesson, User $user)
+    public function __construct(public Lesson $lesson, public User $user)
     {
-        $this->lesson = $lesson;
-        $this->user = $user;
     }
 }
