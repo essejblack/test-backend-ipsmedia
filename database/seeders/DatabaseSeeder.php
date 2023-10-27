@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
         $achievements = Achievement::factory()
             ->count(5)->create();
 
+        collect($achievements)->random()->users()->attach(Arr::random($users));
+
         $comments = Comment::factory()->count(2)->create([
             'user_id' => Arr::random($users)
         ]);
