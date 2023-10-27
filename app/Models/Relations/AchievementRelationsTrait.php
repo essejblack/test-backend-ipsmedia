@@ -2,12 +2,12 @@
 
 namespace App\Models\Relations;
 
-use App\Models\Comment;
-use App\Models\Lesson;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\User;
 
 trait AchievementRelationsTrait
 {
-
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
