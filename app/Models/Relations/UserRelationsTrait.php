@@ -2,6 +2,7 @@
 
 namespace App\Models\Relations;
 
+use App\Models\Achievement;
 use App\Models\Comment;
 use App\Models\Lesson;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -22,5 +23,10 @@ trait UserRelationsTrait
     public function watched(): BelongsToMany
     {
         return $this->belongsToMany(Lesson::class)->wherePivot('watched', true);
+    }
+
+    public function achievements()
+    {
+        return $this->belongsToMany(Achievement::class);
     }
 }
