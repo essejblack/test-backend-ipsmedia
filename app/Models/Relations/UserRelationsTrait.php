@@ -3,8 +3,10 @@
 namespace App\Models\Relations;
 
 use App\Models\Achievement;
+use App\Models\Badge;
 use App\Models\Comment;
 use App\Models\Lesson;
+use App\Models\LessonUser;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -17,7 +19,7 @@ trait UserRelationsTrait
 
     public function lessons(): BelongsToMany
     {
-        return $this->belongsToMany(Lesson::class);
+        return $this->belongsToMany(Lesson::class)->using(LessonUser::class)->withPivot('watched');
     }
 
     public function watched(): BelongsToMany
@@ -28,5 +30,10 @@ trait UserRelationsTrait
     public function achievements()
     {
         return $this->belongsToMany(Achievement::class);
+    }
+
+    public function badge()
+    {
+        return $this->belongsTo(Badge::class);
     }
 }
